@@ -2,10 +2,14 @@ import sys
 
 
 def save_data() -> None:
-    print("---------------------")
+    print("\nTransform data:")
+    print("---\n")
     file = open(sys.argv[1], "r+")
-    content = file.readline()
-    print(f"{content}")
+    lines = file.readlines()
+    file.seek(0)
+    for line in lines:
+        file.write(line.rstrip("\n") + "#\n")
+    file.truncate()
     file.close()
 
 
@@ -18,7 +22,7 @@ def read_text() -> None:
         print(content)
         print("\n---")
         file.close()
-        print(f"File {sys.argv[1]} closed")
+        print(f"File '{sys.argv[1]}' closed")
         save_data()
     except IndexError:
         print(f"Usage: {sys.argv[0]} <file>")
