@@ -40,14 +40,14 @@ def read_text() -> None:
     try:
         print_file_data()
         save_data()
-    except IndexError:
-        print(f"Usage: {sys.argv[0]} <file>")
     except FileNotFoundError as e:
-        print(f"Error opening file '{sys.argv[1]}': {e}")
+        print(f"[STDERR] Error opening file '{sys.argv[1]}': {e}",
+              file=sys.stderr)
     except PermissionError as e:
-        print(f"Error opening file '{sys.argv[1]}': {e}")
+        print(f"[STDERR] Error opening file '{sys.argv[1]}': {e}",
+              file=sys.stderr)
     except KeyboardInterrupt:
-        print("\nError - Keyboard Interrupt")
+        print("\n[STDERR] Error - Keyboard Interrupt", file=sys.stderr)
 
 
 if __name__ == "__main__":
@@ -55,4 +55,4 @@ if __name__ == "__main__":
     if len(sys.argv) == 2:
         read_text()
     else:
-        print(f"Usage: {sys.argv[0]} <file>")
+        print(f"[STDERR] Usage: {sys.argv[0]} <file>", file=sys.stderr)
