@@ -6,8 +6,7 @@ def secure_archive(
     try:
         if action == "r":
             with open(file_name, action) as file:
-                content = file.read()
-                return (True, content)
+                return (True, file.read())
         elif action == "w":
             with open(file_name, action) as file:
                 file.write(content)
